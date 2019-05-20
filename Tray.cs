@@ -21,6 +21,21 @@ namespace kakaoADFinder
             Visible = false;
             notifyIcon1.Visible = true;
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+
+            ShowNotify();
+
+        }
+
+        private void ShowNotify()
+        {
+            if (MessageBox.Show("프로그램이 실행되었습니다. 바로 ㄱㄱ할까요?", "기능 실행", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
+            {
+
+                광고날리기ToolStripMenuItem.PerformClick();
+
+            }
+            MessageBox.Show("트레이에 아이콘을 확인해주세요.", "안내", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
         }
 
 
@@ -100,5 +115,6 @@ namespace kakaoADFinder
         {
             doit();
         }
+
     }
 }
