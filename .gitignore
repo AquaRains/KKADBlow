@@ -2,3 +2,5 @@
 /obj
 /bin
 /KKADBlow.csproj.user
+/publish
+*.pfx

@@ -6,9 +6,9 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using static kakaoADFinder.W32;
+using static KKADBlow.W32;
 
-namespace kakaoADFinder
+namespace KKADBlow
 {
     public partial class Tray : Form
     {

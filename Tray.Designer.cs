@@ -1,4 +1,4 @@
-﻿namespace kakaoADFinder
+﻿namespace KKADBlow
 {
     partial class Tray
     {
