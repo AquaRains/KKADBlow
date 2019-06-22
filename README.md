@@ -4,6 +4,7 @@
 ## 계기
 카톡 광고를 어떻게 가릴수 없나 생각하다가
 어떻게든 되지 않을까 라는 생각으로 만들었습니다.
+(사실은 WINAPI 써먹는 연습 겸사겸사로도 해봤습니다)
 
 ## 사용법
 #### 다운로드 : releases를 클릭하세요! [릴리즈 링크](https://github.com/AquaRains/KKADBlow/releases)
