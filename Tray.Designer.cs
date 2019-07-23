@@ -53,33 +53,33 @@
             this.toolStripMenuItem1,
             this.종료XToolStripMenuItem});
             this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(139, 76);
+            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 98);
             // 
             // 자동갱신ToolStripMenuItem
             // 
             this.자동갱신ToolStripMenuItem.Checked = true;
             this.자동갱신ToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.자동갱신ToolStripMenuItem.Name = "자동갱신ToolStripMenuItem";
-            this.자동갱신ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.자동갱신ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.자동갱신ToolStripMenuItem.Text = "자동 갱신";
-            this.자동갱신ToolStripMenuItem.Click += new System.EventHandler(this.자동갱신ToolStripMenuItem_Click);
+            this.자동갱신ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.자동갱신ToolStripMenuItem_CheckedChanged);
             // 
             // 광고날리기ToolStripMenuItem
             // 
             this.광고날리기ToolStripMenuItem.Name = "광고날리기ToolStripMenuItem";
-            this.광고날리기ToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.광고날리기ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.광고날리기ToolStripMenuItem.Text = "광고 날리기";
             this.광고날리기ToolStripMenuItem.Click += new System.EventHandler(this.광고날리기ToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(135, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
             // 
             // 종료XToolStripMenuItem
             // 
             this.종료XToolStripMenuItem.Name = "종료XToolStripMenuItem";
-            this.종료XToolStripMenuItem.Size = new System.Drawing.Size(138, 22);
+            this.종료XToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.종료XToolStripMenuItem.Text = "종료(&X)";
             this.종료XToolStripMenuItem.Click += new System.EventHandler(this.종료XToolStripMenuItem_Click);
             // 
