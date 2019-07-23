@@ -1,5 +1,5 @@
 # KKADBlow
- AD Blower For Kakao
+ AD Blower For KakaoTalk(PC)
 
 ## 계기
 카톡 광고를 어떻게 가릴수 없나 생각하다가
@@ -19,10 +19,13 @@
 ## 문제가 생기면?
 [Issues](https://github.com/AquaRains/KKADBlow/issues)에 해당 사항을 올려 주세요. 해결 가능한 범위내에선 최대한 볼 예정입니다.
 
+## 요구 사양
+.NET Framework 3.5 를 타겟으로 빌드 되어 있습니다.(미만일경우 작동하지 않아요)
+간단하게 Windows 7를 최저버전으로 잡았다고 보시면 될 것 같네요.
 
 ## 라이센스?
 깃헙의 MIT 템플릿을 적용했습니다. 알아서 쓰시면 됩니다.
 이 프로그램은 있는 그대로 제공되며, 이 프로그램을 사용해서 생기는 문제는..
 최대한 지원 할 예정이나, 책임과 보증은 않습니다.
 
-해당 원문은 license.md에서 확인하세요.
+해당 원문은 `LICENSE` 파일에서 확인하세요.
