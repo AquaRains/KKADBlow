@@ -1,5 +1,5 @@
 # KKADBlow
- AD Blower For Kakao
+ AD Blower For KakaoTalk(PC)
 
 ## 계기
 카톡 광고를 어떻게 가릴수 없나 생각하다가
