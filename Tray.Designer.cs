@@ -63,6 +63,7 @@
             this.자동갱신ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.자동갱신ToolStripMenuItem.Text = "자동 갱신";
             this.자동갱신ToolStripMenuItem.CheckedChanged += new System.EventHandler(this.자동갱신ToolStripMenuItem_CheckedChanged);
+            this.자동갱신ToolStripMenuItem.Click += new System.EventHandler(this.자동갱신ToolStripMenuItem_Click);
             // 
             // 광고날리기ToolStripMenuItem
             // 

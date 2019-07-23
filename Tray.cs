@@ -32,27 +32,21 @@ namespace KKADBlow
             ShowInTaskbar = false;
             Visible = false;
 
-
-            timer = new System.Timers.Timer(10000);
-
-            timer.Elapsed += (sender, e) => BeginInvoke(new TimerInvoker(doit));
-
-
             notifyIcon1.Visible = true;
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
-
             notifyIcon1.ShowBalloonTip(5000, "실행 확인", "프로그램이 실행되었습니다.", ToolTipIcon.Info);
 
+            timer = new System.Timers.Timer(10000);
+            timer.Elapsed += (sender, e) => BeginInvoke(new TimerInvoker(doit));
+
             timer.Start();
+            timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
         }
 
 
-
         //ini파일 읽고 쓰기 넣을 예정
-        //삭제 반복 주기
+
         //hwnd용 클래스 임의로 넣기
-
-
 
         private void 종료XToolStripMenuItem_Click(object sender, EventArgs e)
         {
@@ -117,14 +111,7 @@ namespace KKADBlow
 
         private void 광고날리기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BackgroundWorker worker = new BackgroundWorker();
-
-            // 이벤트 핸들러 지정
-            worker.DoWork += Worker_DoWork;
-
-            // 실행
-            worker.RunWorkerAsync();
-
+            BeginInvoke(new TimerInvoker(doit));
         }
 
         private void Worker_DoWork(object sender, DoWorkEventArgs e)
@@ -135,6 +122,12 @@ namespace KKADBlow
         private void 자동갱신ToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
             timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
+            
+        }
+
+        private void 자동갱신ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            자동갱신ToolStripMenuItem.Checked = !자동갱신ToolStripMenuItem.Checked;
         }
     }
 }
