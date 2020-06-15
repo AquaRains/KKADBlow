@@ -11,10 +11,10 @@ namespace KKADBlow
     {
         [DllImport("user32.dll")]
         public  static extern int EnumWindows(EnumWindowsCallBack enumProc, IntPtr lParam);
+
         [DllImport("user32.dll")]
         [return: MarshalAs(UnmanagedType.Bool)]
         public static extern bool EnumChildWindows(IntPtr hwndParent, EnumWindowsCallBack lpEnumFunc, IntPtr lParam);
-
         
         public delegate bool EnumWindowsCallBack(IntPtr hWnd, IntPtr lParam);
 
@@ -35,7 +35,6 @@ namespace KKADBlow
         public static extern IntPtr SendMessageTimeout(IntPtr windowHandle, uint Msg, IntPtr wParam, IntPtr lParam, SendMessageTimeoutFlags flags, uint timeout, out IntPtr result);
 
         /* Version specifically setup for use with WM_GETTEXT message */
-
         [DllImport("user32.dll", EntryPoint = "SendMessageTimeout", SetLastError = true, CharSet = CharSet.Auto)]
         public static extern uint SendMessageTimeoutText(IntPtr hWnd, int Msg, int countOfChars, StringBuilder text, SendMessageTimeoutFlags flags, uint uTImeoutj, out IntPtr result);
 
@@ -77,9 +76,9 @@ namespace KKADBlow
             /// Maximizes the specified window.
             /// </summary>
             Maximize = 3, // is this the right value?
-                          /// <summary>
-                          /// Activates the window and displays it as a maximized window.
-                          /// </summary>       
+            /// <summary>
+            /// Activates the window and displays it as a maximized window.
+            /// </summary>       
             ShowMaximized = 3,
             /// <summary>
             /// Displays a window in its most recent size and position. This value 
