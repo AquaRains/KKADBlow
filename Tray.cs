@@ -73,7 +73,7 @@ namespace KKADBlow
             }
 
 
-            IntPtr KakaoAD = FindWindowEx(kakaoMainHandle, IntPtr.Zero, "EVA_Window", null);
+            IntPtr KakaoAD = FindWindowEx(kakaoMainHandle, IntPtr.Zero, "BannerAdWnd", null);
 
             if (KakaoAD.Equals(IntPtr.Zero))
                 kakaoMainHandle = IntPtr.Zero;
