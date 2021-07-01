@@ -11,6 +11,7 @@
     <Authors>suwoo</Authors>
     <Company>myhome</Company>
     <Version>1.1.0</Version>
+    <ApplicationIcon>Check-04-WF.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
