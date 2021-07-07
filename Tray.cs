@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
 using System.Text;
+using System.Timers;
 using System.Windows.Forms;
 using static KKADBlow.W32;
 
@@ -12,12 +8,12 @@ namespace KKADBlow
 {
     public partial class Tray : Form
     {
-        private System.Timers.Timer timer;
-        int errorcount = 0;
-        static int ErrorLimit = 5;
-        IntPtr kakaoMainHandle;
+        private System.Timers.Timer _timer;
+        int _errorcount = 0;
+        public const int ErrorLimit = 5;
+        IntPtr _kakaoMainHandle;
 
-        delegate void TimerInvoker();
+        public delegate void TimerInvoker();
 
         public Tray()
         {
@@ -36,11 +32,11 @@ namespace KKADBlow
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
             notifyIcon1.ShowBalloonTip(5000, "실행 확인", "프로그램이 실행되었습니다.", ToolTipIcon.Info);
 
-            timer = new System.Timers.Timer(10000);
-            timer.Elapsed += (sender, e) => BeginInvoke(new TimerInvoker(doit));
+            _timer = new System.Timers.Timer(10000);
+            _timer.Elapsed += (object _, ElapsedEventArgs _) => BeginInvoke(new TimerInvoker(Doit));
 
-            timer.Start();
-            timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
+            _timer.Start();
+            _timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
         }
 
 
@@ -53,52 +49,49 @@ namespace KKADBlow
             this.Close();
         }
 
-        public void doit()
+        public void Doit()
         {
-            if (kakaoMainHandle.Equals(IntPtr.Zero))
+            if (_kakaoMainHandle.Equals(IntPtr.Zero))
             {
-                kakaoMainHandle = FindWindow("EVA_Window_Dblclk", "카카오톡");
-                if (kakaoMainHandle.Equals(IntPtr.Zero))
+                _kakaoMainHandle = FindWindow("EVA_Window_Dblclk", "카카오톡");
+                if (_kakaoMainHandle.Equals(IntPtr.Zero))
                 {
-                    notifyIcon1.ShowBalloonTip(5000, "오류", $"카톡 프로그램을 찾을 수 없습니다. {Environment.NewLine}({errorcount++}번째 시도, {ErrorLimit}회 누적시 종료됨).", ToolTipIcon.Error);
+                    notifyIcon1.ShowBalloonTip(5000, "오류", $"카톡 프로그램을 찾을 수 없습니다. {Environment.NewLine}({_errorcount++}번째 시도, {ErrorLimit}회 누적시 종료됨).", ToolTipIcon.Error);
 
-                    if (errorcount > ErrorLimit) this.Close();
+                    if (_errorcount > ErrorLimit) this.Close();
                     return;
                 }
                 else
                 {
                     notifyIcon1.ShowBalloonTip(5000, "성공", "카톡 창을 찾았습니다. 작업에 들어갑니다!", ToolTipIcon.Info);
-                    errorcount = 0;
+                    _errorcount = 0;
                 }
             }
 
 
-            IntPtr KakaoAD = FindWindowEx(kakaoMainHandle, IntPtr.Zero, "BannerAdWnd", null);
+            IntPtr KakaoAD = FindWindowEx(_kakaoMainHandle, IntPtr.Zero, "BannerAdWnd", null);
 
             if (KakaoAD.Equals(IntPtr.Zero))
-                kakaoMainHandle = IntPtr.Zero;
+                _kakaoMainHandle = IntPtr.Zero;
 
             _ = ShowWindow(KakaoAD, ShowWindowCommands.Hide);
             //  W32.EnableWindow(KakaoAD, true);
 
             RECT ADrect;
-
-
+            
             _ = GetWindowRect(KakaoAD, out ADrect);
-            _ = EnumChildWindows(kakaoMainHandle, EnumWindowsCommand, IntPtr.Zero);
-
-
-
+            _ = EnumChildWindows(_kakaoMainHandle, EnumWindowsCommand, IntPtr.Zero);
+            
 
             bool EnumWindowsCommand(IntPtr hwnd, IntPtr lParam)
             {
-                StringBuilder ClassName = new StringBuilder(100);
+                StringBuilder className = new StringBuilder(100);
 
-                _ = GetClassName(hwnd, ClassName, ClassName.Capacity);
+                _ = GetClassName(hwnd, className, className.Capacity);
 
-                string name = ClassName.ToString();
+                string name = className.ToString();
 
-                if (GetParent(hwnd) == kakaoMainHandle && hwnd != KakaoAD && name == "EVA_ChildWindow")
+                if (GetParent(hwnd) == _kakaoMainHandle && hwnd != KakaoAD && name == "EVA_ChildWindow")
                 {
                     _ = GetWindowRect(hwnd, out RECT CurrentRect);
 
@@ -111,19 +104,13 @@ namespace KKADBlow
 
         private void 광고날리기ToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            BeginInvoke(new TimerInvoker(doit));
-        }
-
-        private void Worker_DoWork(object sender, DoWorkEventArgs e)
-        {
-            doit();
+            BeginInvoke(new TimerInvoker(Doit));
         }
 
         private void 자동갱신ToolStripMenuItem_CheckedChanged(object sender, EventArgs e)
         {
-            timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
-            
-        }
+          
+        } 
 
         private void 자동갱신ToolStripMenuItem_Click(object sender, EventArgs e)
         {
