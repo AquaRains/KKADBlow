@@ -12,10 +12,16 @@
     <Company>myhome</Company>
     <Version>1.1.0</Version>
     <ApplicationIcon>Check-04-WF.ico</ApplicationIcon>
+    <PackageLicenseFile>README.md</PackageLicenseFile>
+    <NeutralLanguage>ko-KR</NeutralLanguage>
   </PropertyGroup>
 
   <ItemGroup>
     <None Remove="Check-04-WF.ico" />
+    <None Include="README.md">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
   <ItemGroup>
