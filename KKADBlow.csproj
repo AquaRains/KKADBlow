@@ -1,46 +1,53 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net5.0-windows</TargetFramework>
-    <UseWindowsForms>true</UseWindowsForms>
-    <StartupObject>KKADBlow.Program</StartupObject>
-    <Platforms>AnyCPU;x64</Platforms>
-    <PackageId>KKADBlow 2</PackageId>
-    <Copyright>suwoo</Copyright>
-    <Authors>suwoo</Authors>
-    <Company>myhome</Company>
-    <Version>1.1.0</Version>
-    <ApplicationIcon>Check-04-WF.ico</ApplicationIcon>
-    <PackageLicenseFile>README.md</PackageLicenseFile>
-    <NeutralLanguage>ko-KR</NeutralLanguage>
-  </PropertyGroup>
+	<PropertyGroup>
+		<OutputType>WinExe</OutputType>
+		<TargetFramework>net5.0-windows</TargetFramework>
+		<UseWindowsForms>true</UseWindowsForms>
+		<StartupObject>KKADBlow.Program</StartupObject>
+		<Platforms>AnyCPU;x64</Platforms>
+		<PackageId>KKADBlow</PackageId>
+		<Copyright>suwoo</Copyright>
+		<Authors>suwoo</Authors>
+		<Company>myhome</Company>
+		<ApplicationIcon>Check-04-WF.ico</ApplicationIcon>
+		<PackageLicenseFile>README.md</PackageLicenseFile>
+		<NeutralLanguage>ko-KR</NeutralLanguage>
+		<SignAssembly>false</SignAssembly>
+		<DelaySign>true</DelaySign>
+		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
+		<NoWin32Manifest>true</NoWin32Manifest>
+		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Check-04-WF.ico" />
-    <None Include="README.md">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
-  </ItemGroup>
+	<ItemGroup>
+		<None Remove="Check-04-WF.ico" />
+		<None Include="README.md">
+			<Pack>True</Pack>
+			<PackagePath>./</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Include="Check-04-WF.ico" />
-  </ItemGroup>
+	<ItemGroup>
+		<Content Include="Check-04-WF.ico" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Tray.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="Tray.Designer.cs">
-      <DependentUpon>Tray.cs</DependentUpon>
-    </Compile>
-  </ItemGroup>
+	<ItemGroup>
+		<Compile Update="Tray.cs">
+			<SubType>Form</SubType>
+		</Compile>
+		<Compile Update="Tray.Designer.cs">
+			<DependentUpon>Tray.cs</DependentUpon>
+		</Compile>
+	</ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Tray.resx">
-      <DependentUpon>Tray.cs</DependentUpon>
-    </EmbeddedResource>
-  </ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Tray.resx">
+			<DependentUpon>Tray.cs</DependentUpon>
+		</EmbeddedResource>
+	</ItemGroup>
 
+	<ItemGroup>
+		<Folder Include="Properties\PublishProfiles\" />
+	</ItemGroup>
 </Project>

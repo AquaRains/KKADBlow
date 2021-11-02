@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 using System.Windows.Forms;
-using static KKADBlow.W32;
+using static KKADBlow.Win32Interop;
 
 namespace KKADBlow
 {
@@ -55,7 +55,7 @@ namespace KKADBlow
                 if (_kakaoMainHandle.Equals(IntPtr.Zero))
                 {
                     _kakaoMainHandleFound = false;
-                    notifyIcon1.ShowBalloonTip(5000, "오류", $"카톡 프로그램을 찾을 수 없습니다. {Environment.NewLine}({_errorCount++}번째 시도, {ErrorLimit}회 누적시 종료됨).", ToolTipIcon.Error);
+                    notifyIcon1.ShowBalloonTip(5000, "오류", $"카톡 프로그램을 찾을 수 없습니다. {Environment.NewLine}({_errorCount++ + 1}번째 시도, {ErrorLimit}회 누적시 종료됨).", ToolTipIcon.Error);
                     if (_errorCount > ErrorLimit) this.Close();
                     return;
                 }
