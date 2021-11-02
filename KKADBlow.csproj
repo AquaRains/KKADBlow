@@ -17,7 +17,8 @@
 		<DelaySign>true</DelaySign>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<NoWin32Manifest>true</NoWin32Manifest>
-		<AssemblyVersion>1.0.0.0</AssemblyVersion>
+		<AssemblyVersion>1.1.101.10101</AssemblyVersion>
+		<FileVersion>1.1.101.10101</FileVersion>
 	</PropertyGroup>
 
 	<ItemGroup>
