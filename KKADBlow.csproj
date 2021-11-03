@@ -47,8 +47,4 @@
 			<DependentUpon>Tray.cs</DependentUpon>
 		</EmbeddedResource>
 	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Properties\PublishProfiles\" />
-	</ItemGroup>
 </Project>
