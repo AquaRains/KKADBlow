@@ -18,7 +18,6 @@ namespace KKADBlow
         public Tray()
         {
             InitializeComponent();
-
             Init();
         }
 
