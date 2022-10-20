@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<StartupObject>KKADBlow.Program</StartupObject>
 		<Platforms>AnyCPU;x64</Platforms>
@@ -17,9 +17,14 @@
 		<DelaySign>true</DelaySign>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<NoWin32Manifest>true</NoWin32Manifest>
-		<AssemblyVersion>1.1.102.10101</AssemblyVersion>
-		<FileVersion>1.1.102.10101</FileVersion>
+		<AssemblyVersion>1.1.202.10101</AssemblyVersion>
+		<FileVersion>1.1.202.10101</FileVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <Compile Remove="Win32Interop.cs" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<None Remove="Check-04-WF.ico" />
@@ -31,6 +36,10 @@
 
 	<ItemGroup>
 		<Content Include="Check-04-WF.ico" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="PInvoke.User32" Version="0.7.124" />
 	</ItemGroup>
 
 	<ItemGroup>

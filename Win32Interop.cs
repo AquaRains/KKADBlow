@@ -6,8 +6,7 @@ using System.Runtime.InteropServices;
 using System.Text;
 
 namespace KKADBlow
-{   
-    [SuppressMessage("ReSharper", "InconsistentNaming")]
+{
     public static class Win32Interop
     {
         /// <summary>
