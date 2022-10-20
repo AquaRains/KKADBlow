@@ -23,10 +23,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Compile Remove="Win32Interop.cs" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<None Remove="Check-04-WF.ico" />
 		<None Include="README.md">
 			<Pack>True</Pack>
