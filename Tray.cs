@@ -32,8 +32,8 @@ namespace KKADBlow
             notifyIcon1.ContextMenuStrip = contextMenuStrip1;
             notifyIcon1.ShowBalloonTip(5000, "실행 확인", "프로그램이 실행되었습니다.", ToolTipIcon.Info);
 
-            _timer = new System.Timers.Timer(10000);
-            _timer.Elapsed += (_, _) => BeginInvoke(new TimerInvoker(Doit));
+            _timer = new System.Timers.Timer(10);
+            _timer.Elapsed += (_, _) => Doit();
 
             _timer.Start();
             _timer.Enabled = 자동갱신ToolStripMenuItem.Checked;
@@ -41,7 +41,7 @@ namespace KKADBlow
 
         private void 종료XToolStripMenuItem_Click(object sender, EventArgs e) => this.Close();
 
-        private void 광고날리기ToolStripMenuItem_Click(object sender, EventArgs e) => BeginInvoke(new TimerInvoker(Doit));
+        private void 광고날리기ToolStripMenuItem_Click(object sender, EventArgs e) => Doit();
 
         private void 자동갱신ToolStripMenuItem_Click(object sender, EventArgs e)
         {
