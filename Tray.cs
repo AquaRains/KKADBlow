@@ -97,10 +97,8 @@ namespace KKADBlow
 
         private static unsafe bool EnumWindowsCommand(IntPtr hwnd, IntPtr lParam)
         {
-            WindowsCommandParams* p = (WindowsCommandParams*)lParam;
-            var v = new char[255];
-            _ = GetClassName(hwnd, v);
-            string className = new string(v).TrimEnd('\0');
+            WindowsCommandParams* p = (WindowsCommandParams*)lParam;          
+            string className = GetClassName(hwnd);
 
             if (GetParent(hwnd) == p->MainHandle && hwnd != p->HwndAdArea && className == "EVA_ChildWindow")
             {
