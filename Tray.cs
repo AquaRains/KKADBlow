@@ -52,9 +52,10 @@ namespace KKADBlow
 
         public void Doit()
         {
-            if (!kkParams.MainHandleFound || kkParams.MainHandle != FindWindow("EVA_Window_Dblclk", "카카오톡"))
+            if (!kkParams.MainHandleFound || kkParams.MainHandle != FindWindow("EVA_Window_Dblclk",String.Empty))
             {
-                kkParams.MainHandle = FindWindow("EVA_Window_Dblclk", "카카오톡");
+                kkParams.MainHandle = FindWindow("EVA_Window_Dblclk", String.Empty);
+                // notifyIcon1.ShowBalloonTip(5000,"알림",kkParams.MainHandle.ToString(), ToolTipIcon.Info);
                 if (kkParams.MainHandleFound)
                 {
                     notifyIcon1.ShowBalloonTip(5000, "성공", "카톡 창을 찾았습니다. 작업에 들어갑니다!", ToolTipIcon.Info);
@@ -68,7 +69,7 @@ namespace KKADBlow
                 }
             }
 
-            kkParams.HwndAdArea = FindWindowEx(kkParams.MainHandle, IntPtr.Zero, "BannerAdWnd", null);
+            kkParams.HwndAdArea = FindWindowEx(kkParams.MainHandle, IntPtr.Zero, "BannerAdContainer", null);
 
             if (kkParams.AdHandleFound)
                 unsafe
@@ -100,7 +101,7 @@ namespace KKADBlow
             WindowsCommandParams* p = (WindowsCommandParams*)lParam;          
             string className = GetClassName(hwnd);
 
-            if (GetParent(hwnd) == p->MainHandle && hwnd != p->HwndAdArea && className == "EVA_ChildWindow")
+            if (GetParent(hwnd) == p->MainHandle && hwnd != p->HwndAdArea && className == "EVA_Window_Dblclk")
             {
                 _ = GetWindowRect(hwnd, out var currentRect);
                 _ = SetWindowPos(hwnd, hWndInsertAfter: (IntPtr)1, 0, 0, currentRect.right - currentRect.left,
