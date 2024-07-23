@@ -1,8 +1,9 @@
 use std::mem;
 use std::ops::BitOrAssign;
 use windows::Win32::Foundation::{BOOL, HWND, LPARAM, RECT};
+use windows::Win32::Graphics::Gdi::{RDW_ALLCHILDREN, RDW_ERASE, RDW_ERASENOW, RDW_INVALIDATE, RedrawWindow};
 use windows::Win32::UI::Shell::{NIF_ICON, NIM_MODIFY, NOTIFYICONDATAW, Shell_NotifyIconW};
-use windows::Win32::UI::WindowsAndMessaging::{EnumChildWindows, EnumWindows, FindWindowExW, FindWindowW, GetClassNameW, GetParent, GetWindowRect, GetWindowTextW, GetWindowThreadProcessId, HICON, IMAGE_ICON, InsertMenuItemW, LoadImageW, LR_DEFAULTCOLOR, MENUITEMINFOW, MFS_CHECKED, MFS_DISABLED, MFS_UNCHECKED, MFS_UNHILITE, MFT_SEPARATOR, MFT_STRING, MIIM_CHECKMARKS, MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING, SetMenuItemInfoW, SetWindowPos, ShowWindow, SW_HIDE, SWP_NOMOVE, WNDENUMPROC};
+use windows::Win32::UI::WindowsAndMessaging::{EnumChildWindows, EnumWindows, FindWindowExW, FindWindowW, GetClassNameW, GetParent, GetWindowRect, GetWindowTextW, GetWindowThreadProcessId, HICON, HWND_BOTTOM, IMAGE_ICON, InsertMenuItemW, LoadImageW, LR_DEFAULTCOLOR, MENUITEMINFOW, MFS_CHECKED, MFS_DISABLED, MFS_UNCHECKED, MFS_UNHILITE, MFT_SEPARATOR, MFT_STRING, MIIM_CHECKMARKS, MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING, SetMenuItemInfoW, SetWindowPos, ShowWindow, SW_HIDE, SWP_ASYNCWINDOWPOS, SWP_HIDEWINDOW, SWP_NOACTIVATE, SWP_NOCOPYBITS, SWP_NOMOVE, SWP_NOREDRAW, SWP_NOSENDCHANGING, WNDENUMPROC};
 use crate::err::ApplicationError;
 use crate::gui::IconSource;
 use crate::gui::w32::string_extensions::{ToPCWSTRWrapper, ToPWSTRWrapper};
@@ -340,11 +341,12 @@ impl MainFeature for TrayItem {
 
     fn hide_item(handle_area: HWND) -> Result<(), ApplicationError> {
         unsafe {
-            if ShowWindow(handle_area, SW_HIDE).as_bool() {
-                Ok(())
-            } else {
-                Err(ApplicationError::new("Cannot Hide Window."))
-            }
+            let handle_parent = GetParent(handle_area).unwrap_or_else(|_| { HWND_BOTTOM });
+
+            SetWindowPos(handle_area, handle_parent, 0, 0, 0, 0, SWP_HIDEWINDOW | SWP_NOACTIVATE | SWP_NOCOPYBITS | SWP_NOREDRAW | SWP_NOSENDCHANGING | SWP_ASYNCWINDOWPOS).unwrap_or_default();
+
+            _ = RedrawWindow(handle_area, None, None, RDW_ERASE | RDW_INVALIDATE | RDW_ERASENOW | RDW_ALLCHILDREN);
+            Ok(())
         }
     }
 

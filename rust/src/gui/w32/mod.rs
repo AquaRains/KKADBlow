@@ -69,7 +69,7 @@ pub fn find_area_and_shrink(_: Option<Sender<Message>>, mut option: AppData) -> 
         let current_pid = TrayItem::get_window_thread_process_id(h);
 
         //찾아낼 창의 클래스명
-        let (ad_class, ad_windowname, _) = option.target_ad_area.deconstruct();
+        let (ad_class, ad_window_name, _) = option.target_ad_area.deconstruct();
 
         //내가 찾을 타겟의 프로세스를 확인
         if parent_pid == current_pid {
@@ -80,7 +80,7 @@ pub fn find_area_and_shrink(_: Option<Sender<Message>>, mut option: AppData) -> 
 
 
             //광고부분일경우
-            if ad_class == current_class && current_window == ad_windowname {
+            if ad_class == current_class && current_window == ad_window_name {
                 ad_target_founded = {
                     //현재 창의 핸들로 child 핸들명도 찾아서 체크 해야 한다.
                     enumerate_child_windows(h, |h2| {
@@ -115,11 +115,6 @@ pub fn find_area_and_shrink(_: Option<Sender<Message>>, mut option: AppData) -> 
                                 Err(_) => { return false }
                             };
                             option.target_ad_area.window_area = Some(rect);
-                            //여기까지 찾았으면 빼박이니까 제거, 제거하기전에 0으로 만들고 제거해버리자
-                            match TrayItem::set_windows_position(h, HWND::default(), 0, 0, 0, 0) {
-                                Ok(_) => {  }
-                                Err(_) => {  }
-                            }
 
                             match TrayItem::hide_item(h) {
                                 Ok(_) => { true }

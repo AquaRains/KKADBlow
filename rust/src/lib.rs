@@ -2,13 +2,13 @@ mod gui;
 mod err;
 mod memory_lock;
 mod structs;
-mod funcs;
+mod func;
 
 use std::sync::mpsc::Sender;
 use crate::gui::{TrayApplication, IconSource};
 use crate::gui::w32::traits::{Label, Menu, Separator};
 use crate::structs::{AppData, ElapsedHandler, Message, TimerTrait};
-pub use crate::funcs::options_from_console_args;
+pub use crate::func::options_from_console_args;
 
 use windows::core::{PCWSTR, w};
 use crate::gui::w32::find_area_and_shrink;
