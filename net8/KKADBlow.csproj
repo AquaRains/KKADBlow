@@ -2,7 +2,7 @@
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
-		<TargetFramework>net5.0-windows</TargetFramework>
+		<TargetFramework>net6.0-windows</TargetFramework>
 		<UseWindowsForms>true</UseWindowsForms>
 		<StartupObject>KKADBlow.Program</StartupObject>
 		<Platforms>AnyCPU;x64</Platforms>
@@ -17,7 +17,9 @@
 		<DelaySign>true</DelaySign>
 		<PackageRequireLicenseAcceptance>false</PackageRequireLicenseAcceptance>
 		<NoWin32Manifest>true</NoWin32Manifest>
-		<AssemblyVersion>1.1.0.0</AssemblyVersion>
+		<AssemblyVersion>1.1.202.10101</AssemblyVersion>
+		<FileVersion>1.1.202.10101</FileVersion>
+		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -33,6 +35,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <PackageReference Include="PInvoke.User32" Version="0.7.124" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Update="Tray.cs">
 			<SubType>Form</SubType>
 		</Compile>
@@ -45,9 +51,5 @@
 		<EmbeddedResource Update="Tray.resx">
 			<DependentUpon>Tray.cs</DependentUpon>
 		</EmbeddedResource>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Folder Include="Properties\PublishProfiles\" />
 	</ItemGroup>
 </Project>
