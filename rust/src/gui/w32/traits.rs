@@ -3,7 +3,7 @@ use std::ops::BitOrAssign;
 use windows::Win32::Foundation::{BOOL, HWND, LPARAM, RECT};
 use windows::Win32::Graphics::Gdi::{RDW_ALLCHILDREN, RDW_ERASE, RDW_ERASENOW, RDW_INVALIDATE, RedrawWindow};
 use windows::Win32::UI::Shell::{NIF_ICON, NIM_MODIFY, NOTIFYICONDATAW, Shell_NotifyIconW};
-use windows::Win32::UI::WindowsAndMessaging::{EnumChildWindows, EnumWindows, FindWindowExW, FindWindowW, GetClassNameW, GetParent, GetWindowRect, GetWindowTextW, GetWindowThreadProcessId, HICON, HWND_BOTTOM, IMAGE_ICON, InsertMenuItemW, LoadImageW, LR_DEFAULTCOLOR, MENUITEMINFOW, MFS_CHECKED, MFS_DISABLED, MFS_UNCHECKED, MFS_UNHILITE, MFT_SEPARATOR, MFT_STRING, MIIM_CHECKMARKS, MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING, SetMenuItemInfoW, SetWindowPos, ShowWindow, SW_HIDE, SWP_ASYNCWINDOWPOS, SWP_HIDEWINDOW, SWP_NOACTIVATE, SWP_NOCOPYBITS, SWP_NOMOVE, SWP_NOREDRAW, SWP_NOSENDCHANGING, WNDENUMPROC};
+use windows::Win32::UI::WindowsAndMessaging::{EnumChildWindows, EnumWindows, FindWindowExW, FindWindowW, GetClassNameW, GetParent, GetWindowRect, GetWindowTextW, GetWindowThreadProcessId, HICON, HWND_BOTTOM, IMAGE_ICON, InsertMenuItemW, LoadImageW, LR_DEFAULTCOLOR, MENUITEMINFOW, MFS_CHECKED, MFS_DISABLED, MFS_UNCHECKED, MFS_UNHILITE, MFT_SEPARATOR, MFT_STRING, MIIM_CHECKMARKS, MIIM_FTYPE, MIIM_ID, MIIM_STATE, MIIM_STRING, SetMenuItemInfoW, SetWindowPos, SWP_ASYNCWINDOWPOS, SWP_HIDEWINDOW, SWP_NOACTIVATE, SWP_NOCOPYBITS, SWP_NOMOVE, SWP_NOREDRAW, SWP_NOSENDCHANGING, WNDENUMPROC};
 use crate::err::ApplicationError;
 use crate::gui::IconSource;
 use crate::gui::w32::string_extensions::{ToPCWSTRWrapper, ToPWSTRWrapper};
@@ -269,8 +269,7 @@ pub trait MainFeature {
     fn get_area_rect(handle_area: HWND) -> Result<RECT, ApplicationError>;
     fn set_windows_position(handle_area: HWND, insert_after: HWND, x: i32, y: i32, width: i32, height: i32) -> Result<(), ApplicationError>;
     fn get_class_name(handle: HWND) -> Result<String, ApplicationError>;
-    fn get_window_text(handle: HWND) -> Result<String, ApplicationError>
-    ;
+    fn get_window_text(handle: HWND) -> Result<String, ApplicationError>;
     fn get_parent_handle(handle: HWND) -> Result<HWND, ApplicationError>;
     fn get_window_thread_process_id(handle: HWND) -> Option<u32>;
 }
