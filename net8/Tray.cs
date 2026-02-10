@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
-using System.Text;
 using System.Windows.Forms;
 using static PInvoke.User32;
 
@@ -9,7 +7,6 @@ namespace KKADBlow
     public partial class Tray : Form
     {
         public const int ErrorLimit = 5;
-        public delegate void TimerInvoker();
 
         private System.Timers.Timer _timer;
         private int _errorCount;
@@ -98,14 +95,14 @@ namespace KKADBlow
 
         private static unsafe bool EnumWindowsCommand(IntPtr hwnd, IntPtr lParam)
         {
-            WindowsCommandParams* p = (WindowsCommandParams*)lParam;          
+            var p = (WindowsCommandParams*)lParam;          
             string className = GetClassName(hwnd);
             
             //광고가 아닌 부분을 찾아서 다시 위치 잡아주는 것
             if (GetParent(hwnd) == p->MainHandle && hwnd != p->HwndAdArea && className == "EVA_Window_Dblclk")
             {
                 _ = GetWindowRect(hwnd, out var currentRect);
-                _ = SetWindowPos(hwnd, hWndInsertAfter: (IntPtr)1, 0, 0, currentRect.right - currentRect.left,
+                _ = SetWindowPos(hwnd, hWndInsertAfter: 1, 0, 0, currentRect.right - currentRect.left,
                     p->RectAdArea.bottom - currentRect.top, SetWindowPosFlags.SWP_NOMOVE);
             }
             return true;

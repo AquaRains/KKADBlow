@@ -11,9 +11,6 @@
 		<Authors>suwoo</Authors>
 		<Company>myhome</Company>
 		<ApplicationIcon>Check-04-WF.ico</ApplicationIcon>
-    <PublishAot>true</PublishAot>
-    <IsAotCompatible>true</IsAotCompatible>
-    <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
 		<PackageLicenseFile>README.md</PackageLicenseFile>
 		<NeutralLanguage>ko-KR</NeutralLanguage>
 		<SignAssembly>false</SignAssembly>

@@ -42,8 +42,8 @@ pub fn app_init(option: Option<AppData>) -> Result<(), err::ApplicationError> {
     let timer_sender = sender.clone();
 
     let timer = structs::Timer {
-        interval: 0,
-        repeat: true,
+        interval: option.repeat_interval_second,
+        repeat: option.repeat,
     };
 
     timer.start(ElapsedHandler::Func(move || {
@@ -66,6 +66,7 @@ pub fn app_init(option: Option<AppData>) -> Result<(), err::ApplicationError> {
             }
             Ok(Message::FeatureStart) => {
                 do_main_feature(option, sender.clone());
+
             }
             _ => {}
         }
